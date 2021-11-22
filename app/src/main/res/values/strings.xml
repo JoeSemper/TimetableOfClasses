@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Timetable of classes</string>
+    <string name="title_home">Home</string>
+    <string name="title_classes">Classes</string>
+    <string name="title_list">List</string>
+    <string name="title_favorites">Favorites</string>
+</resources>

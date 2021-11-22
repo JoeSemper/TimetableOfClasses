@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_classes"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="@string/title_classes" />
+
+    <item
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+        android:title="@string/title_list" />
+
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_baseline_star_outline_24"
+        android:title="@string/title_favorites" />
+
+</menu>
