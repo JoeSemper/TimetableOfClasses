@@ -11,14 +11,12 @@ import org.koin.androidx.scope.fragmentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.scope.Scope
 import android.view.*
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.joesemper.timetable.R
-import com.joesemper.timetable.ui.classes.adapters.HomeLessonsRVAdapter
-import com.joesemper.timetable.util.currentLessonPosition
+import com.joesemper.timetable.ui.classes.adapters.HomeHwRvAdapter
+import com.joesemper.timetable.ui.classes.adapters.HomeLessonsRvAdapter
+import com.joesemper.timetable.util.getCurrentLessonPosition
+import com.joesemper.timetable.util.getHomeworkLessons
 import com.joesemper.timetable.util.getTodayLessons
 
 
@@ -30,7 +28,8 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
 
     private val binding get() = _binding!!
 
-    private lateinit var lessonsAdapter: HomeLessonsRVAdapter
+    private lateinit var lessonsAdapter: HomeLessonsRvAdapter
+    private lateinit var homeworkAdapter: HomeHwRvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,13 +59,14 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
         initToolbar()
         initCounter()
         initLessonsRV()
+        initHomeworkRV()
         setInitialData()
     }
 
     private fun initToolbar() {
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.homeToolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
-            setTitle(R.string.title_home)
+            title = getString(R.string.greeting)
         }
     }
 
@@ -82,11 +82,20 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
 
     private fun initLessonsRV() {
         val lessons = getTodayLessons(viewModel.currentClasses)
-        lessonsAdapter = HomeLessonsRVAdapter(lessons)
+        lessonsAdapter = HomeLessonsRvAdapter(lessons)
         binding.rvLessons.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = lessonsAdapter
-            scrollToPosition(currentLessonPosition(lessons))
+            scrollToPosition(getCurrentLessonPosition(lessons))
+        }
+    }
+
+    private fun initHomeworkRV() {
+        val homework = getHomeworkLessons(viewModel.currentClasses)
+        homeworkAdapter = HomeHwRvAdapter(homework)
+        binding.rvHw.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = homeworkAdapter
         }
     }
 

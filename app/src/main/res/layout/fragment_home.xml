@@ -20,190 +20,229 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="@dimen/corner_radius"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_toolbar">
-
+        app:layout_constraintTop_toBottomOf="@+id/home_toolbar"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/gradient_background">
+            android:layout_height="wrap_content">
 
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_point"
-                app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
-                app:layout_constraintStart_toStartOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:layout_constraintVertical_bias="0.545"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_point"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
-                app:layout_constraintEnd_toStartOf="@+id/counter_hours"
-                app:layout_constraintStart_toEndOf="@+id/counter_days"
-                app:layout_constraintTop_toTopOf="@+id/counter_hours"
-                app:layout_constraintVertical_bias="0.454"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/counter_days"
-                style="@style/CounterTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="0" />
-
-            <TextView
-                android:id="@+id/counter_hours"
-                style="@style/CounterTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/counter_days"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="@+id/counter_days"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="0" />
-
-            <TextView
-                android:id="@+id/counter_minutes"
-                style="@style/CounterTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/counter_hours"
-                tools:text="0" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_point"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
-                app:layout_constraintEnd_toStartOf="@+id/counter_minutes"
-                app:layout_constraintStart_toEndOf="@+id/counter_hours"
-                app:layout_constraintTop_toTopOf="@+id/counter_hours"
-                app:tint="@color/white" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/ic_point"
-                app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/are_you_ready_for_exams"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+                app:cardCornerRadius="@dimen/corner_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_background">
+
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:src="@drawable/ic_point"
+                        app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
+                        app:layout_constraintStart_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        app:layout_constraintVertical_bias="0.545"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_point"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                        app:layout_constraintEnd_toStartOf="@+id/counter_hours"
+                        app:layout_constraintStart_toEndOf="@+id/counter_days"
+                        app:layout_constraintTop_toTopOf="@+id/counter_hours"
+                        app:layout_constraintVertical_bias="0.454"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/counter_days"
+                        style="@style/CounterTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/counter_hours"
+                        style="@style/CounterTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/counter_days"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="@+id/counter_days"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/counter_minutes"
+                        style="@style/CounterTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/counter_hours"
+                        tools:text="0" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_point"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                        app:layout_constraintEnd_toStartOf="@+id/counter_minutes"
+                        app:layout_constraintStart_toEndOf="@+id/counter_hours"
+                        app:layout_constraintTop_toTopOf="@+id/counter_hours"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:src="@drawable/ic_point"
+                        app:layout_constraintBottom_toBottomOf="@+id/counter_hours"
+                        app:layout_constraintStart_toStartOf="@+id/imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/are_you_ready_for_exams"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/hours"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/counter_hours"
+                        app:layout_constraintStart_toStartOf="@+id/counter_hours"
+                        app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/days"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/counter_days"
+                        app:layout_constraintStart_toStartOf="@+id/counter_days"
+                        app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/minutes"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/counter_minutes"
+                        app:layout_constraintStart_toStartOf="@+id/counter_minutes"
+                        app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView6"
+                style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/hours"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/counter_hours"
-                app:layout_constraintStart_toStartOf="@+id/counter_hours"
-                app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+                android:layout_marginTop="24dp"
+                android:text="@string/classes"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/classes_today"
+                style="@style/SecondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/days"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/counter_days"
-                app:layout_constraintStart_toStartOf="@+id/counter_days"
-                app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                tools:text="TextView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_lessons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_lesson" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView8"
+                style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/minutes"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/counter_minutes"
-                app:layout_constraintStart_toStartOf="@+id/counter_minutes"
-                app:layout_constraintTop_toBottomOf="@+id/counter_hours" />
+                android:layout_marginTop="24dp"
+                android:text="@string/homework"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/rv_lessons" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_homework" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/classes"
-        style="@style/PrimaryText"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/classes_today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="TextView"
-        style="@style/SecondaryText"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_lessons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_lesson" />
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

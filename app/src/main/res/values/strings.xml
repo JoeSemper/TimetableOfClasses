@@ -13,4 +13,6 @@
     <string name="profile">Profile</string>
     <string name="classes">Classes</string>
     <string name="open_in">Open in</string>
+    <string name="homework">Homework</string>
+    <string name="greeting">Hi, Guest!</string>
 </resources>

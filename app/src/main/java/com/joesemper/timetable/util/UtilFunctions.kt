@@ -22,7 +22,7 @@ fun isLessonExtra(): Boolean {
 }
 
 fun getRandomImage(): Int {
-    return when((0..2).random()) {
+    return when ((0..2).random()) {
         0 -> R.drawable.ic_ball
         1 -> R.drawable.ic_scince
         else -> R.drawable.ic_book
@@ -105,20 +105,50 @@ fun getLessonTime(lesson: Lesson): String {
     return "${getTimeByMilliseconds(lesson.startAt)} - ${getTimeByMilliseconds(lesson.endAt)}"
 }
 
-fun isItCurrentLesson(lesson: Lesson): Boolean {
-    return ((lesson.startAt - MILLISECONDS_IN_MINUTE * 15) < Date().time) && (lesson.endAt > Date().time)
-}
-
-fun currentLessonPosition(lessons: List<Lesson>): Int {
+fun getCurrentLessonPosition(lessons: List<Lesson>): Int {
     lessons.forEachIndexed { index, lesson ->
-        if (isItCurrentLesson(lesson)) return index
+        if (((lesson.startAt - MILLISECONDS_IN_MINUTE * 15) < Date().time) && (lesson.endAt > Date().time)) return index
     }
     return 0
 }
 
-fun getTodayLessons(lessons: List<Lesson>): List<Lesson>{
+//fun currentLessonPosition(lessons: List<Lesson>): Int {
+//    lessons.forEachIndexed { index, lesson ->
+//        if (isItCurrentLesson(lessons)) return index
+//    }
+//    return 0
+//}
+
+fun getTodayLessons(lessons: List<Lesson>): List<Lesson> {
+    var result = lessons.filter {
+        it.startAt / MILLISECONDS_IN_DAY == Date().time / MILLISECONDS_IN_DAY
+    }
+    if (result.first().endAt < Date().time) {
+        result = lessons.filter {
+            it.startAt / MILLISECONDS_IN_DAY == (Date().time + MILLISECONDS_IN_DAY) / MILLISECONDS_IN_DAY
+        }
+    }
+    return result
+}
+
+fun getHomeworkLessons(lessons: List<Lesson>): List<Lesson> {
     return lessons.filter {
-        it.startAt/MILLISECONDS_IN_DAY == Date().time/ MILLISECONDS_IN_DAY
+        it.startAt / MILLISECONDS_IN_DAY > Date().time / MILLISECONDS_IN_DAY
+    }
+}
+
+fun getDaysLeft(date: Long): Int {
+    return (date / MILLISECONDS_IN_DAY).toInt() - (Date().time / MILLISECONDS_IN_DAY).toInt()
+}
+
+fun getRandomSecondaryIcon(): Int {
+    return when ((0..5).random()) {
+        0 -> R.drawable.ic_random1
+        1 -> R.drawable.ic_random2
+        2 -> R.drawable.ic_random3
+        3 -> R.drawable.ic_random4
+        4 -> R.drawable.ic_person
+        else -> R.drawable.ic_random5
     }
 }
 
