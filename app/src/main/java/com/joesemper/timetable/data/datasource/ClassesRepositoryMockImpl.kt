@@ -25,7 +25,8 @@ class ClassesRepositoryMockImpl : ClassesRepository {
                         teacher = getRandomTeacher(),
                         startAt = getLessonStartTime(numOfLesson, numOfDay),
                         endAt = getLessonEndTime(numOfLesson, numOfDay),
-                        isExtra = isLessonExtra()
+                        isExtra = isLessonExtra(),
+                        icon = getRandomImage()
                     )
                 )
             }

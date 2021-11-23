@@ -6,5 +6,6 @@ data class Lesson(
     val teacher: String = "",
     val startAt: Long = 0,
     val endAt: Long = 0,
-    val isExtra: Boolean = false
+    val isExtra: Boolean = false,
+    val icon: Int = 0
 )

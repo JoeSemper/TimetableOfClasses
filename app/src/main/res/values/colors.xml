@@ -2,9 +2,10 @@
 <resources>
     <color name="primary">#272727</color>
     <color name="primary_light">#4B4B4B</color>
+    <color name="primary_light_transparent">#19CDCDCD</color>
     <color name="secondary">#8BCA32</color>
     <color name="secondary_dark">#0F9374</color>
-    <color name="support">#37C5EF</color>
+    <color name="support">#21D7EF</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white_secondary">#E4E4E4</color>
+    <color name="white_secondary">#D8D1D1</color>
 </resources>

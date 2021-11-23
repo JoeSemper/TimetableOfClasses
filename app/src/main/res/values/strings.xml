@@ -11,4 +11,6 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="profile">Profile</string>
+    <string name="classes">Classes</string>
+    <string name="open_in">Open in</string>
 </resources>
