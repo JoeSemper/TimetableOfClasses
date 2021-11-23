@@ -1,18 +1,18 @@
 package com.joesemper.timetable.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.joesemper.timetable.databinding.FragmentHomeBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.scope.Scope
+import android.view.*
+import com.joesemper.timetable.R
+
 
 class HomeFragment : Fragment(), AndroidScopeComponent {
 
@@ -21,6 +21,11 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +36,36 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
         return binding.root
     }
 
-    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
     }
 
-    @ExperimentalCoroutinesApi
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.home_menu, menu)
+    }
+
     private fun initViews() {
+        initToolbar()
+        initCounter()
+    }
+
+    private fun initToolbar() {
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.homeToolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setTitle(R.string.title_home)
+        }
+    }
+
+    private fun initCounter() {
         lifecycleScope.launchWhenStarted {
             viewModel.remainToExamState.collect {
-                binding.textHome.text = it
+                binding.counterDays.text = it.days
+                binding.counterHours.text = it.hours
+                binding.counterMinutes.text = it.minutes
             }
         }
-
     }
 
 

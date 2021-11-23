@@ -71,16 +71,19 @@ fun getRemainTime(target: Long): Long {
     return target - Date().time
 }
 
-fun getRemainDays(target: Long): Int {
-    return (target / MILLISECONDS_IN_DAY).toInt()
+fun getRemainDays(target: Long): String {
+    val result = (target / MILLISECONDS_IN_DAY).toInt()
+    return if (result > 9) result.toString() else "0$result"
 }
 
-fun getRemainHours(target: Long): Int {
-    return ((target % MILLISECONDS_IN_DAY) / MILLISECONDS_IN_HOUR).toInt()
+fun getRemainHours(target: Long): String {
+    val result = ((target % MILLISECONDS_IN_DAY) / MILLISECONDS_IN_HOUR).toInt()
+    return if (result > 9) result.toString() else "0$result"
 }
 
-fun getRemainMinutes(target: Long): Int {
-    return (((target % MILLISECONDS_IN_DAY) % MILLISECONDS_IN_HOUR) / MILLISECONDS_IN_MINUTE).toInt()
+fun getRemainMinutes(target: Long): String {
+    val result = (((target % MILLISECONDS_IN_DAY) % MILLISECONDS_IN_HOUR) / MILLISECONDS_IN_MINUTE).toInt()
+    return if (result > 9) result.toString() else "0$result"
 }
 
 fun getRemainSeconds(target: Long): Int {

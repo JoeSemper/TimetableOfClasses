@@ -2,6 +2,7 @@ package com.joesemper.timetable.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.joesemper.timetable.data.model.CounterState
 import com.joesemper.timetable.data.model.Lesson
 import com.joesemper.timetable.data.repository.ClassesRepository
 import com.joesemper.timetable.util.*
@@ -13,7 +14,7 @@ import kotlin.concurrent.timer
 class HomeViewModel(private val classesRepository: ClassesRepository) : ViewModel() {
 
     var currentClasses = listOf<Lesson>()
-    val remainToExamState: MutableStateFlow<String> = MutableStateFlow("0")
+    val remainToExamState: MutableStateFlow<CounterState> = MutableStateFlow(CounterState())
 
     init {
         viewModelScope.launch {
@@ -32,8 +33,11 @@ class HomeViewModel(private val classesRepository: ClassesRepository) : ViewMode
             val exam = currentClasses.last().endAt + MILLISECONDS_IN_DAY * 10
             val dif = getRemainTime(exam)
             remainToExamState.value =
-                "${getRemainDays(dif)} ${getRemainHours(dif)} ${getRemainMinutes(dif)}"
-
+                CounterState(
+                    days = getRemainDays(dif),
+                    hours = getRemainHours(dif),
+                    minutes = getRemainMinutes(dif)
+                )
         }
     }
 
