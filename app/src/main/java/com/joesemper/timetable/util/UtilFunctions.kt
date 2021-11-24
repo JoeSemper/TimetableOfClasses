@@ -33,6 +33,7 @@ fun getLessonStartTime(numOfLesson: Int, numOfDay: Int): Long {
     val calendar = Calendar.getInstance()
 //    calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
     calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
     val date = calendar.timeInMillis
     return (date + numOfDay * MILLISECONDS_IN_DAY + 8 * MILLISECONDS_IN_HOUR + numOfLesson * MILLISECONDS_IN_HOUR)
 }
@@ -41,38 +42,14 @@ fun getLessonEndTime(numOfLesson: Int, numOfDay: Int): Long {
     return getLessonStartTime(numOfLesson, numOfDay) + (45 * MILLISECONDS_IN_MINUTE)
 }
 
-fun getHoursByMilliseconds(ms: Long): String {
-    val sdf = SimpleDateFormat("HH", Locale.US)
-    val date = Date(ms)
-    return sdf.format(date)
-}
-
-fun getDateByMilliseconds(ms: Long): String {
-    val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
-    val date = Date(ms)
-    return sdf.format(date)
-}
-
-fun getDateByMillisecondsTextMonth(ms: Long): String {
-    val sdf = SimpleDateFormat("dd MMM yyyy", Locale.US)
-    val date = Date(ms)
-    return sdf.format(date)
-}
-
-fun getDayByMilliseconds(ms: Long): String {
-    val sdf = SimpleDateFormat("dd", Locale.US)
-    val date = Date(ms)
+fun getCurrentDate(): String {
+    val sdf = SimpleDateFormat("dd MMM", Locale.US)
+    val date = Date()
     return sdf.format(date)
 }
 
 fun getTimeByMilliseconds(ms: Long): String {
     val sdf = SimpleDateFormat("HH:mm", Locale.US)
-    val date = Date(ms)
-    return sdf.format(date)
-}
-
-fun getDateAndTimeByMilliseconds(ms: Long): String {
-    val sdf = SimpleDateFormat("dd.MM.yy HH:mm", Locale.US)
     val date = Date(ms)
     return sdf.format(date)
 }
@@ -97,33 +74,25 @@ fun getRemainMinutes(target: Long): String {
     return if (result > 9) result.toString() else "0$result"
 }
 
-fun getRemainSeconds(target: Long): Int {
-    return ((((target % MILLISECONDS_IN_DAY) % MILLISECONDS_IN_HOUR) % MILLISECONDS_IN_MINUTE) / 1000).toInt()
-}
-
 fun getLessonTime(lesson: Lesson): String {
     return "${getTimeByMilliseconds(lesson.startAt)} - ${getTimeByMilliseconds(lesson.endAt)}"
 }
 
 fun getCurrentLessonPosition(lessons: List<Lesson>): Int {
+    val calendar = Calendar.getInstance()
+    val date = Date().time
     lessons.forEachIndexed { index, lesson ->
-        if (((lesson.startAt - MILLISECONDS_IN_MINUTE * 15) < Date().time) && (lesson.endAt > Date().time)) return index
+        if (((lesson.startAt - MILLISECONDS_IN_MINUTE * 15) < date) && (lesson.endAt > date)) return index
+        if ((index > 1) && ((lessons[index - 1].endAt) < date) && (lesson.startAt > date)) return index
     }
     return 0
 }
-
-//fun currentLessonPosition(lessons: List<Lesson>): Int {
-//    lessons.forEachIndexed { index, lesson ->
-//        if (isItCurrentLesson(lessons)) return index
-//    }
-//    return 0
-//}
 
 fun getTodayLessons(lessons: List<Lesson>): List<Lesson> {
     var result = lessons.filter {
         it.startAt / MILLISECONDS_IN_DAY == Date().time / MILLISECONDS_IN_DAY
     }
-    if (result.first().endAt < Date().time) {
+    if (result.last().endAt < Date().time) {
         result = lessons.filter {
             it.startAt / MILLISECONDS_IN_DAY == (Date().time + MILLISECONDS_IN_DAY) / MILLISECONDS_IN_DAY
         }

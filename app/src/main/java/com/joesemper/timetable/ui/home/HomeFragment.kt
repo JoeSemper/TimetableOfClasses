@@ -1,5 +1,7 @@
 package com.joesemper.timetable.ui.home
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,10 +13,11 @@ import org.koin.androidx.scope.fragmentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.scope.Scope
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joesemper.timetable.R
-import com.joesemper.timetable.ui.classes.adapters.HomeHwRvAdapter
-import com.joesemper.timetable.ui.classes.adapters.HomeLessonsRvAdapter
+import com.joesemper.timetable.ui.home.adapters.HomeHwRvAdapter
+import com.joesemper.timetable.ui.home.adapters.HomeLessonsRvAdapter
 import com.joesemper.timetable.util.getCurrentLessonPosition
 import com.joesemper.timetable.util.getHomeworkLessons
 import com.joesemper.timetable.util.getTodayLessons
@@ -82,11 +85,19 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
 
     private fun initLessonsRV() {
         val lessons = getTodayLessons(viewModel.currentClasses)
-        lessonsAdapter = HomeLessonsRvAdapter(lessons)
+        val currentLessonPosition = getCurrentLessonPosition(lessons)
+        lessonsAdapter = HomeLessonsRvAdapter(
+            data = lessons,
+            onClick = {
+                startSkype()
+            },
+            currentPosition = currentLessonPosition
+        )
+
         binding.rvLessons.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = lessonsAdapter
-            scrollToPosition(getCurrentLessonPosition(lessons))
+            scrollToPosition(currentLessonPosition)
         }
     }
 
@@ -102,6 +113,22 @@ class HomeFragment : Fragment(), AndroidScopeComponent {
     private fun setInitialData() {
         "${getTodayLessons(viewModel.currentClasses).size} lessons today".also {
             binding.classesToday.text = it
+        }
+    }
+
+    private fun startSkype() {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setPackage("com.skype.android")
+        try {
+            startActivity(intent);
+        } catch (e: ActivityNotFoundException) {
+            try {
+                val unrestrictedIntent = Intent(Intent.ACTION_VIEW)
+                startActivity(unrestrictedIntent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context, "Please install Skype application", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 

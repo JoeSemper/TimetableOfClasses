@@ -15,4 +15,7 @@
     <string name="open_in">Open in</string>
     <string name="homework">Homework</string>
     <string name="greeting">Hi, Guest!</string>
+    <string name="grid_view">Grid view</string>
+    <string name="list_view">List view</string>
+    <string name="today">Today</string>
 </resources>

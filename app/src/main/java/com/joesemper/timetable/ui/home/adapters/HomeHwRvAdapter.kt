@@ -1,4 +1,4 @@
-package com.joesemper.timetable.ui.classes.adapters
+package com.joesemper.timetable.ui.home.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
